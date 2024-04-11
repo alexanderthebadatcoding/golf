@@ -58,7 +58,8 @@ async function fetchESPNData(i: number) {
     // Extract relevant information
     let score = "";
     if (player.stats && player.stats.length > 3) {
-      score = player.stats[3].value;
+      score = player.stats[3].displayValue;
+
       //         money = player.stats[18].displayValue;
       // @TODO add hole info
     }
@@ -175,7 +176,7 @@ app.frame("/top5", async (c) => {
             }}
           >
             {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
-            {firstPlayer?.playerName} {firstPlayer?.score}
+            {firstPlayer?.playerName} {firstPlayer?.score}{" "}
           </div>
           <div
             style={{
@@ -327,7 +328,7 @@ app.frame("/top10", async (c) => {
       //   {" "}
       //   {espnData?.awayTeamShort}
       // </Button.Link>,
-      <Button value="back" action="/top10">
+      <Button value="back" action="/top5">
         {leftArrow}
       </Button>,
 
