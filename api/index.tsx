@@ -31,6 +31,7 @@ function getCountryFlagEmoji(countryFlagUrl) {
     can: "🇨🇦",
     fij: "🇫🇯",
     mex: "🇲🇽",
+    nzl: "🇳🇿",
     // Add more country code mappings as needed
   };
 
