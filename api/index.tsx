@@ -93,7 +93,8 @@ app.frame("/", (c) => {
       <div
         style={{
           alignItems: "center",
-          background: "white",
+          // backgroundImage: `linear-gradient(to bottom, #076652, #F9F304)`,
+          background: "#015D2A",
           display: "flex",
           flexDirection: "column",
           flexWrap: "nowrap",
@@ -101,18 +102,12 @@ app.frame("/", (c) => {
           justifyContent: "center",
           textAlign: "center",
           width: "100%",
+          fontSize: 80,
         }}
       >
-        <img
-          alt="Home Team"
-          height={400}
-          src="https://bracket.game/favicons/apple-touch-icon.png"
-          style={{ margin: "0 2px" }}
-          width={400}
-        />
         <div
           style={{
-            color: "#2F5FF6",
+            color: "#F9F304",
             fontSize: 100,
             fontStyle: "normal",
             letterSpacing: "-0.025em",
@@ -124,7 +119,7 @@ app.frame("/", (c) => {
             fontFamily: "Inter",
           }}
         >
-          Bracket.Game
+          ⛳ Golf Score Card
         </div>
       </div>
     ),
@@ -139,15 +134,6 @@ app.frame("/top5", async (c) => {
   const thirdPlayer = await fetchESPNData(2);
   const fourthPlayer = await fetchESPNData(3);
   const fifthPlayer = await fetchESPNData(4);
-
-  // console.log(firstPlayer);
-  // Define the action for the "back" button
-  // let backAction = i > 0 ? `/${i - 1}` : `/`;
-  // Define the action for the "next" button
-  // let nextAction = i < espnData?.length - 1 ? `/${i + 1}` : null;
-  // let homeSlug = espnData?.homeSlug;
-  // let awaySlug = espnData?.awaySlug;
-  // const leftArrow = "\u2190"; // Left arrow ←
   const rightArrow = "\u2192";
   // Example usage:
   return c.res({
@@ -180,6 +166,7 @@ app.frame("/top5", async (c) => {
             padding: 20,
             fontSize: 56,
             fontWeight: 700,
+            fontFamily: "Inter",
           }}
         >
           <div
@@ -238,10 +225,205 @@ app.frame("/top5", async (c) => {
       //   {leftArrow}
       // </Button>,
 
-      <Button value="next" action="/next5">
+      <Button value="next" action="/top10">
         {rightArrow}
       </Button>,
-      <Button.Reset>Back</Button.Reset>,
+      ,
+    ],
+  });
+});
+app.frame("/top10", async (c) => {
+  // const { buttonValue } = c;
+  const firstPlayer = await fetchESPNData(5);
+  const secondPlayer = await fetchESPNData(6);
+  const thirdPlayer = await fetchESPNData(7);
+  const fourthPlayer = await fetchESPNData(8);
+  const fifthPlayer = await fetchESPNData(9);
+  const rightArrow = "\u2192";
+  const leftArrow = "\u2190";
+  // Example usage:
+  return c.res({
+    // action: action,
+    image: (
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundImage: `linear-gradient(to bottom, #076652, #000)`,
+          fontSize: 66,
+          fontWeight: 900,
+          color: "white",
+          fontFamily: "Inter",
+        }}
+      >
+        <div style={{ marginBottom: 15 }}>{firstPlayer?.name}</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            marginBottom: 25,
+            width: "100%",
+            padding: 20,
+            fontSize: 56,
+            fontWeight: 700,
+            fontFamily: "Inter",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
+            {firstPlayer?.playerName} {firstPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {secondPlayer?.playerRank} {secondPlayer?.flagEmoji}{" "}
+            {secondPlayer?.playerName} {secondPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {thirdPlayer?.playerRank} {thirdPlayer?.flagEmoji}{" "}
+            {thirdPlayer?.playerName} {thirdPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {fourthPlayer?.playerRank} {fourthPlayer?.flagEmoji}{" "}
+            {fourthPlayer?.playerName} {fourthPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {fifthPlayer?.playerRank} {fifthPlayer?.flagEmoji}{" "}
+            {fifthPlayer?.playerName} {fifthPlayer?.score}
+          </div>
+        </div>
+      </div>
+    ),
+    intents: [
+      // <Button.Link href={`https://bracket.game/${homeSlug}`}>
+      //   {" "}
+      //   {espnData?.homeTeamShort}
+      // </Button.Link>,
+      // <Button.Link href={`https://bracket.game/${awaySlug}`}>
+      //   {" "}
+      //   {espnData?.awayTeamShort}
+      // </Button.Link>,
+      <Button value="back" action="/top10">
+        {leftArrow}
+      </Button>,
+
+      <Button value="next" action="/top15">
+        {rightArrow}
+      </Button>,
+    ],
+  });
+});
+app.frame("/top15", async (c) => {
+  // const { buttonValue } = c;
+  const firstPlayer = await fetchESPNData(10);
+  const secondPlayer = await fetchESPNData(11);
+  const thirdPlayer = await fetchESPNData(12);
+  const fourthPlayer = await fetchESPNData(13);
+  const fifthPlayer = await fetchESPNData(14);
+  // Example usage:
+  return c.res({
+    // action: action,
+    image: (
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundImage: `linear-gradient(to bottom, #076652, #000)`,
+          fontSize: 66,
+          fontWeight: 900,
+          color: "white",
+          fontFamily: "Inter",
+        }}
+      >
+        <div style={{ marginBottom: 15 }}>{firstPlayer?.name}</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            marginBottom: 25,
+            width: "100%",
+            padding: 20,
+            fontSize: 56,
+            fontWeight: 700,
+            fontFamily: "Inter",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
+            {firstPlayer?.playerName} {firstPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {secondPlayer?.playerRank} {secondPlayer?.flagEmoji}{" "}
+            {secondPlayer?.playerName} {secondPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {thirdPlayer?.playerRank} {thirdPlayer?.flagEmoji}{" "}
+            {thirdPlayer?.playerName} {thirdPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {fourthPlayer?.playerRank} {fourthPlayer?.flagEmoji}{" "}
+            {fourthPlayer?.playerName} {fourthPlayer?.score}
+          </div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {fifthPlayer?.playerRank} {fifthPlayer?.flagEmoji}{" "}
+            {fifthPlayer?.playerName} {fifthPlayer?.score}
+          </div>
+        </div>
+      </div>
+    ),
+    intents: [
+      <Button.Link href="https://bracket.game/">Bracket.Game </Button.Link>,
+      <Button.Reset>Reset</Button.Reset>,
     ],
   });
 });
