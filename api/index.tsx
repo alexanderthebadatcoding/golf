@@ -23,7 +23,7 @@ function getCountryFlagEmoji(countryFlagUrl) {
     kor: "🇰🇷",
     jpn: "🇯🇵",
     eng: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    nir: "🇬🇧",
+    nir: "🇮🇪",
     aus: "🇦🇺",
     nor: "🇳🇴",
     pol: "🇵🇱",
