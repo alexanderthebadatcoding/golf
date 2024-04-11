@@ -123,7 +123,7 @@ app.frame("/", (c) => {
         </div>
       </div>
     ),
-    intents: [<Button value="next">View Games</Button>],
+    intents: [<Button value="next">View Leaderboard</Button>],
   });
 });
 
