@@ -32,6 +32,9 @@ function getCountryFlagEmoji(countryFlagUrl) {
     fij: "🇫🇯",
     mex: "🇲🇽",
     nzl: "🇳🇿",
+    fra: "🇫🇷",
+    chi: "🇨🇱",
+    swe: "🇸🇪",
     // Add more country code mappings as needed
   };
 
@@ -55,14 +58,16 @@ async function fetchESPNData(i: number) {
     let flagEmoji = getCountryFlagEmoji(player.countryFlag);
     const playerName = player.fullName;
     const playerRank = player.rank;
+    const id = player.id;
 
     // Extract relevant information
     let score = "";
-    if (player.stats && player.stats.length > 3) {
+    const playerScore = await getScore(id);
+    if (playerScore !== null) {
+      score = playerScore.score;
+      // console.log(score);
+    } else if (player.stats && player.stats.length > 3) {
       score = player.stats[3].displayValue;
-
-      //         money = player.stats[18].displayValue;
-      // @TODO add hole info
     }
 
     return {
@@ -72,6 +77,27 @@ async function fetchESPNData(i: number) {
       flagEmoji,
       playerName,
       playerRank,
+      score,
+      id,
+    };
+  } catch (error) {
+    console.error("Error fetching ESPN data:", error);
+    return null;
+  }
+}
+
+async function getScore(i: number) {
+  try {
+    const response = await fetch(
+      `http://sports.core.api.espn.com/v2/sports/golf/leagues/pga/events/401580344/competitions/401580344/competitors/${i}/score?lang=en&region=us`
+    );
+    const data = await response.json();
+    // Use ESPN data to populate the frame
+    // Extract information about the next game
+    // Extract information about the next game
+    const score = data.displayValue;
+    // console.log(score);
+    return {
       score,
     };
   } catch (error) {
@@ -96,7 +122,7 @@ app.frame("/", (c) => {
         style={{
           alignItems: "center",
           // backgroundImage: `linear-gradient(to bottom, #076652, #F9F304)`,
-          background: "#015D2A",
+          background: "#1C4932",
           display: "flex",
           flexDirection: "column",
           flexWrap: "nowrap",
@@ -109,7 +135,7 @@ app.frame("/", (c) => {
       >
         <div
           style={{
-            color: "#F9F304",
+            color: "#FCE300",
             fontSize: 100,
             fontStyle: "normal",
             letterSpacing: "-0.025em",
@@ -149,7 +175,7 @@ app.frame("/top5", async (c) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: `linear-gradient(to bottom, #076652, #000)`,
+          backgroundImage: `linear-gradient(to bottom, #1C4932, #000)`,
           fontSize: 66,
           fontWeight: 900,
           color: "white",
@@ -177,7 +203,7 @@ app.frame("/top5", async (c) => {
             }}
           >
             {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
-            {firstPlayer?.playerName} {firstPlayer?.score}{" "}
+            {firstPlayer?.playerName} {firstPlayer?.score}
           </div>
           <div
             style={{
@@ -255,7 +281,7 @@ app.frame("/top10", async (c) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: `linear-gradient(to bottom, #076652, #000)`,
+          backgroundImage: `linear-gradient(to bottom, #1C4932, #000)`,
           fontSize: 66,
           fontWeight: 900,
           color: "white",
@@ -358,7 +384,7 @@ app.frame("/top15", async (c) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: `linear-gradient(to bottom, #076652, #000)`,
+          backgroundImage: `linear-gradient(to bottom, #1C4932, #000)`,
           fontSize: 66,
           fontWeight: 900,
           color: "white",
