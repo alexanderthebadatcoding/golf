@@ -62,12 +62,16 @@ async function fetchESPNData(i: number) {
 
     // Extract relevant information
     let score = "";
+    let prize = "";
     const playerScore = await getScore(id);
     if (playerScore !== null) {
       score = playerScore.score;
       // console.log(score);
     } else if (player.stats && player.stats.length > 3) {
       score = player.stats[3].displayValue;
+    }
+    if (player.stats && player.stats.length > 18) {
+      prize = player.stats[18].displayValue;
     }
 
     return {
@@ -79,6 +83,7 @@ async function fetchESPNData(i: number) {
       playerRank,
       score,
       id,
+      prize,
     };
   } catch (error) {
     console.error("Error fetching ESPN data:", error);
@@ -203,7 +208,7 @@ app.frame("/top5", async (c) => {
             }}
           >
             {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
-            {firstPlayer?.playerName} {firstPlayer?.score}
+            {firstPlayer?.playerName} {firstPlayer?.score} {firstPlayer?.prize}
           </div>
           <div
             style={{
@@ -211,7 +216,8 @@ app.frame("/top5", async (c) => {
             }}
           >
             {secondPlayer?.playerRank} {secondPlayer?.flagEmoji}{" "}
-            {secondPlayer?.playerName} {secondPlayer?.score}
+            {secondPlayer?.playerName} {secondPlayer?.score}{" "}
+            {secondPlayer?.prize}
           </div>
           <div
             style={{
@@ -219,7 +225,7 @@ app.frame("/top5", async (c) => {
             }}
           >
             {thirdPlayer?.playerRank} {thirdPlayer?.flagEmoji}{" "}
-            {thirdPlayer?.playerName} {thirdPlayer?.score}
+            {thirdPlayer?.playerName} {thirdPlayer?.score} {thirdPlayer?.prize}
           </div>
           <div
             style={{
@@ -227,7 +233,8 @@ app.frame("/top5", async (c) => {
             }}
           >
             {fourthPlayer?.playerRank} {fourthPlayer?.flagEmoji}{" "}
-            {fourthPlayer?.playerName} {fourthPlayer?.score}
+            {fourthPlayer?.playerName} {fourthPlayer?.score}{" "}
+            {fourthPlayer?.prize}
           </div>
           <div
             style={{
@@ -235,7 +242,7 @@ app.frame("/top5", async (c) => {
             }}
           >
             {fifthPlayer?.playerRank} {fifthPlayer?.flagEmoji}{" "}
-            {fifthPlayer?.playerName} {fifthPlayer?.score}
+            {fifthPlayer?.playerName} {fifthPlayer?.score} {fifthPlayer?.prize}
           </div>
         </div>
       </div>
@@ -309,7 +316,7 @@ app.frame("/top10", async (c) => {
             }}
           >
             {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
-            {firstPlayer?.playerName} {firstPlayer?.score}
+            {firstPlayer?.playerName} {firstPlayer?.score} {firstPlayer?.prize}
           </div>
           <div
             style={{
@@ -317,7 +324,8 @@ app.frame("/top10", async (c) => {
             }}
           >
             {secondPlayer?.playerRank} {secondPlayer?.flagEmoji}{" "}
-            {secondPlayer?.playerName} {secondPlayer?.score}
+            {secondPlayer?.playerName} {secondPlayer?.score}{" "}
+            {secondPlayer?.prize}
           </div>
           <div
             style={{
@@ -325,7 +333,7 @@ app.frame("/top10", async (c) => {
             }}
           >
             {thirdPlayer?.playerRank} {thirdPlayer?.flagEmoji}{" "}
-            {thirdPlayer?.playerName} {thirdPlayer?.score}
+            {thirdPlayer?.playerName} {thirdPlayer?.score} {thirdPlayer?.prize}
           </div>
           <div
             style={{
@@ -333,7 +341,8 @@ app.frame("/top10", async (c) => {
             }}
           >
             {fourthPlayer?.playerRank} {fourthPlayer?.flagEmoji}{" "}
-            {fourthPlayer?.playerName} {fourthPlayer?.score}
+            {fourthPlayer?.playerName} {fourthPlayer?.score}{" "}
+            {fourthPlayer?.prize}
           </div>
           <div
             style={{
@@ -341,7 +350,7 @@ app.frame("/top10", async (c) => {
             }}
           >
             {fifthPlayer?.playerRank} {fifthPlayer?.flagEmoji}{" "}
-            {fifthPlayer?.playerName} {fifthPlayer?.score}
+            {fifthPlayer?.playerName} {fifthPlayer?.score} {fifthPlayer?.prize}
           </div>
         </div>
       </div>
@@ -412,7 +421,7 @@ app.frame("/top15", async (c) => {
             }}
           >
             {firstPlayer?.playerRank} {firstPlayer?.flagEmoji}{" "}
-            {firstPlayer?.playerName} {firstPlayer?.score}
+            {firstPlayer?.playerName} {firstPlayer?.score} {firstPlayer?.prize}
           </div>
           <div
             style={{
@@ -420,7 +429,8 @@ app.frame("/top15", async (c) => {
             }}
           >
             {secondPlayer?.playerRank} {secondPlayer?.flagEmoji}{" "}
-            {secondPlayer?.playerName} {secondPlayer?.score}
+            {secondPlayer?.playerName} {secondPlayer?.score}{" "}
+            {secondPlayer?.prize}
           </div>
           <div
             style={{
@@ -428,7 +438,7 @@ app.frame("/top15", async (c) => {
             }}
           >
             {thirdPlayer?.playerRank} {thirdPlayer?.flagEmoji}{" "}
-            {thirdPlayer?.playerName} {thirdPlayer?.score}
+            {thirdPlayer?.playerName} {thirdPlayer?.score} {thirdPlayer?.prize}
           </div>
           <div
             style={{
@@ -436,7 +446,8 @@ app.frame("/top15", async (c) => {
             }}
           >
             {fourthPlayer?.playerRank} {fourthPlayer?.flagEmoji}{" "}
-            {fourthPlayer?.playerName} {fourthPlayer?.score}
+            {fourthPlayer?.playerName} {fourthPlayer?.score}{" "}
+            {fourthPlayer?.prize}
           </div>
           <div
             style={{
@@ -444,7 +455,7 @@ app.frame("/top15", async (c) => {
             }}
           >
             {fifthPlayer?.playerRank} {fifthPlayer?.flagEmoji}{" "}
-            {fifthPlayer?.playerName} {fifthPlayer?.score}
+            {fifthPlayer?.playerName} {fifthPlayer?.score} {fifthPlayer?.prize}
           </div>
         </div>
       </div>
