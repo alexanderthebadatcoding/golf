@@ -45,7 +45,7 @@ function getCountryFlagEmoji(countryFlagUrl) {
 async function fetchESPNData(i: number) {
   try {
     const response = await fetch(
-      "https://site.web.api.espn.com/apis/site/v2/sports/golf/pga/leaderboard/players?region=us&lang=en&event=401580344"
+      "https://site.web.api.espn.com/apis/site/v2/sports/golf/pga/leaderboard/players?region=us&lang=en&event=401580345"
     );
     const data = await response.json();
     // Use ESPN data to populate the frame
