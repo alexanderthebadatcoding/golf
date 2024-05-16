@@ -35,6 +35,7 @@ function getCountryFlagEmoji(countryFlagUrl) {
     fra: "🇫🇷",
     chi: "🇨🇱",
     swe: "🇸🇪",
+    sct: "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
     // Add more country code mappings as needed
   };
 
@@ -70,9 +71,9 @@ async function fetchESPNData(i: number) {
     } else if (player.stats && player.stats.length > 3) {
       score = player.stats[3].displayValue;
     }
-    if (player.stats && player.stats.length > 18) {
-      prize = player.stats[18].displayValue;
-    }
+    // if (player.stats && player.stats.length > 18) {
+      // prize = player.stats[18].displayValue;
+    // }
 
     return {
       length,
