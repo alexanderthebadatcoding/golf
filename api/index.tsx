@@ -94,7 +94,7 @@ async function fetchESPNData(i: number) {
 async function getScore(i: number) {
   try {
     const response = await fetch(
-      `http://sports.core.api.espn.com/v2/sports/golf/leagues/pga/events/401580344/competitions/401580344/competitors/${i}/score?lang=en&region=us`
+      `http://sports.core.api.espn.com/v2/sports/golf/leagues/pga/events/401580351/competitions/401580351/competitors/${i}/score?lang=en&region=us`
     );
     const data = await response.json();
     // Use ESPN data to populate the frame
