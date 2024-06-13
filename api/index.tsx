@@ -464,7 +464,7 @@ app.frame("/top15", async (c) => {
       </div>
     ),
     intents: [
-      <Button.Link href="https://bracket.game/">Bracket.Game </Button.Link>,
+      <Button.Link href="https://bracket.game/usopengolf">Bracket.Game </Button.Link>,
       <Button.Reset>Reset</Button.Reset>,
     ],
   });
