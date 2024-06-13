@@ -35,7 +35,9 @@ function getCountryFlagEmoji(countryFlagUrl) {
     fra: "🇫🇷",
     chi: "🇨🇱",
     swe: "🇸🇪",
-    sct: "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+    sct: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    ita: "🇮🇹",
+    phi: "🇵🇭"
     // Add more country code mappings as needed
   };
 
@@ -46,7 +48,7 @@ function getCountryFlagEmoji(countryFlagUrl) {
 async function fetchESPNData(i: number) {
   try {
     const response = await fetch(
-      "https://site.web.api.espn.com/apis/site/v2/sports/golf/pga/leaderboard/players?region=us&lang=en&event=401580351"
+      "https://site.web.api.espn.com/apis/site/v2/sports/golf/pga/leaderboard/players?region=us&lang=en&event=401580355"
     );
     const data = await response.json();
     // Use ESPN data to populate the frame
@@ -95,7 +97,7 @@ async function fetchESPNData(i: number) {
 async function getScore(i: number) {
   try {
     const response = await fetch(
-      `http://sports.core.api.espn.com/v2/sports/golf/leagues/pga/events/401580351/competitions/401580351/competitors/${i}/score?lang=en&region=us`
+      `http://sports.core.api.espn.com/v2/sports/golf/leagues/pga/events/401580355/competitions/401580355/competitors/${i}/score?lang=en&region=us`
     );
     const data = await response.json();
     // Use ESPN data to populate the frame
