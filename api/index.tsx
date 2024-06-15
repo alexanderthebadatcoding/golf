@@ -37,7 +37,8 @@ function getCountryFlagEmoji(countryFlagUrl) {
     swe: "🇸🇪",
     sct: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
     ita: "🇮🇹",
-    phi: "🇵🇭"
+    phi: "🇵🇭",
+    bel: "🇧🇪"
     // Add more country code mappings as needed
   };
 
